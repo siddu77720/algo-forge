@@ -109,6 +109,11 @@ app.post('/api/webhook/raw', (req, res) => {
   res.sendStatus(200);
 });
 
+// Health check / Root endpoint
+app.get('/', (req, res) => {
+  res.send('Algo Forge Backend API is live and running successfully! 🟢');
+});
+
 // Extension webhook — DOM fallback scraper
 app.post('/api/webhook/tick', (req, res) => {
   const { pair, price, timestamp } = req.body;
