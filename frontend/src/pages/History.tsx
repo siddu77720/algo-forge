@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useEffect, useState, useCallback } from 'react';
 import { socket } from '../lib/socket';
 
@@ -57,7 +58,6 @@ export default function History() {
     try {
       const from = new Date(fromDate).getTime();
       const to   = new Date(toDate + 'T23:59:59').getTime();
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       const url  = `${API_URL}/api/history?from=${from}&to=${to}`;
       const res  = await fetch(url);
       const data = await res.json();

@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useEffect, useState } from 'react';
 import { socket } from '../lib/socket';
 
@@ -51,7 +52,7 @@ export default function Dashboard() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/pairs')
+    fetch(`${API_URL}/api/pairs`)
       .then(r => r.json())
       .then(d => {
         setPairs(d.pairs);

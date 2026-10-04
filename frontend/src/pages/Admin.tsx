@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -10,7 +11,7 @@ export default function Admin() {
   }, []);
 
   const fetchUsers = async () => {
-    const res = await fetch('http://localhost:5000/api/admin/users', {
+    const res = await fetch(`${API_URL}/api/admin/users`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     if (res.ok) {
@@ -19,7 +20,7 @@ export default function Admin() {
   };
 
   const toggleStatus = async (id: string, active: boolean) => {
-    await fetch(`http://localhost:5000/api/admin/users/${id}/status`, {
+    await fetch(`${API_URL}/api/admin/users/${id}/status`, {
       method: 'PATCH',
       headers: { 
         'Authorization': `Bearer ${token}`,

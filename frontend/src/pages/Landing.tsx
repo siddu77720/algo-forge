@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { socket } from '../lib/socket';
@@ -67,7 +68,7 @@ export default function Landing() {
   useEffect(() => {
     const from = Date.now() - 30 * 24 * 60 * 60 * 1000;
     const to   = Date.now();
-    fetch(`http://localhost:5000/api/history?from=${from}&to=${to}`)
+    fetch(`${API_URL}/api/history?from=${from}&to=${to}`)
       .then(r => r.json())
       .then(d => setSignals(d.signals || []))
       .catch(() => setSignals([]))
@@ -76,7 +77,7 @@ export default function Landing() {
 
   // ── Fetch pairs list ─────────────────────────────────────────────────────
   useEffect(() => {
-    fetch('http://localhost:5000/api/pairs')
+    fetch(`${API_URL}/api/pairs`)
       .then(r => r.json())
       .then(d => setPairs(d.pairs || []));
   }, []);

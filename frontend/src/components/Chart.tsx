@@ -1,3 +1,4 @@
+import { API_URL } from '../config';
 import { useEffect, useRef } from 'react';
 import { createChart, CandlestickSeries } from 'lightweight-charts';
 import type { IChartApi, ISeriesApi } from 'lightweight-charts';
@@ -37,7 +38,7 @@ export default function Chart({ pair, state }: { pair: string, state: any }) {
       chartRef.current = chart;
       seriesRef.current = candlestickSeries;
 
-      fetch(`http://localhost:5000/api/pairs/${encodeURIComponent(pair)}/history`)
+      fetch(`${API_URL}/api/pairs/${encodeURIComponent(pair)}/history`)
         .then(r => r.json())
         .then(d => {
           if (d.history && seriesRef.current) {
