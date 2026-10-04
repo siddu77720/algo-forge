@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id         String    @id @default(uuid())
+  username   String    @unique
+  email      String    @unique
+  password   String
+  role       String    @default("USER") // ADMIN or USER
+  active     Boolean   @default(true)
+  expiryDate DateTime?
+  createdAt  DateTime  @default(now())
+}
+
+model SignalHistory {
+  id                 String   @id @default(uuid())
+  pair               String
+  date               String
+  time               String
+  signal             String?
+  breakoutDirection  String?
+  baseCandleTime     DateTime?
+  breakoutCandleTime DateTime?
+  entryTime          DateTime?
+  gapStatus          String?
+  strategyStatus     String
+  result             String?  // WIN, LOSS, NO TRADE
+  createdAt          DateTime @default(now())
+}

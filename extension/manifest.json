@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "AlgoForge Quotex Bridge",
+  "version": "1.0",
+  "description": "Bridges live Quotex chart data securely to your local AlgoForge dashboard without asking for passwords.",
+  "permissions": ["scripting"],
+  "host_permissions": ["*://*.qxbroker.com/*", "*://qxbroker.com/*", "http://localhost:5000/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.qxbroker.com/*", "*://qxbroker.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["*://*.qxbroker.com/*", "*://qxbroker.com/*"]
+    }
+  ]
+}
